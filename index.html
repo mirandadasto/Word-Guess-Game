@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Word-Guess-Game</title>
+
+    <script src="assets/javascript/game.js"></script>
+
+</head>
+<body>
+
+    <h1>
+        <label id="pressAnyKey">
+            Press any key to get started!
+        </label>
+    </h1>
+
+    <h2>
+        Wins:
+    </h2>
+
+    <label id="winCounter">
+        0
+    </label>
+    
+    <h2>
+        Current Word:
+    </h2>
+
+    <label id="currentWord">
+        _ _ _ _ _ _
+    </label>
+
+    <h2>
+        Number of Guesses Remaining:
+    </h2>
+
+    <label id="guessesRemaining">
+        15
+    </label>
+
+    <h2>
+        Letters Already Guessed:
+    </h2>
+
+    <label id="guessedLetters">
+        0
+    </label>
+
+    <script type="text/javascript">
+      document.onkeyup = function(event) {
+        keyPressed(event.key);
+      };
+    </script>
+
+</body>
+</html>
