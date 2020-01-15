@@ -10,28 +10,51 @@ var isGameStarted = false;
 
 function keyPressed(key)
 {
-    if(key == "F5")
+    if(key == "F5" || key == "Enter" || key == "Escape")
         return;
 
     if(!isGameStarted)
     {
         CreateNewGame();
         isGameStarted = true;
+        document.getElementById("pressAnyKey").innerHTML = "Harry Potter and the Lexicon of Secrets";
+        return;
     }
 
-    // TODO don't allow duplicates
+    if(IsValidKeyPress(key, event.keyCode))
+    {
+        UpdateWord();
+        
+        guessesRemaining--;
+        UpdateRemainingGuesses();
+
+        DetermineVictoryStatus();
+    }
+}
+
+function IsValidKeyPress(key, keyCode)  
+{ 
+    // Doesn't allow duplicates
+    for (var duplicateCheck = 0; duplicateCheck < guessedLetters.length; duplicateCheck++)  
+    {
+        if(key == guessedLetters[duplicateCheck])
+        {
+            alert("You've entered in " + key.toUpperCase() + " multiple times!");
+            return false;
+        }
+    }
+
     // only allow letters
+    if (!(keyCode >= 65 && keyCode <= 90))
+    {
+        alert(key + " is not a valid letter!");
+        return false;
+    }
 
+    // push and update with valid key
     guessedLetters.push(key);
-    
     UpdateGuessedLetters(key);
-
-    UpdateWord();
-    
-    guessesRemaining--;
-    UpdateRemainingGuesses();
-
-    DetermineVictoryStatus();
+    return true;
 }
 
 function UpdateRemainingGuesses()
